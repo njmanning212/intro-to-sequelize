@@ -13,7 +13,11 @@ const create = async (req, res) => {
 
 const index = async (req, res) => {
   try {
-    const cats = await Cat.findAll()
+    const cats = await Cat.findAll({
+      include: [
+        {model: Feeding, as: 'feedings'}
+      ]
+    })
     res.status(200).json(cats)
   } catch (error) {
     console.log(error)
@@ -23,7 +27,11 @@ const index = async (req, res) => {
 
 const show = async (req, res) => {
   try {
-    const cat = await Cat.findByPk(req.params.id)
+    const cat = await Cat.findByPk(req.params.id, {
+      include: [
+        {model: Feeding, as: 'feedings'}
+      ]
+    })
     res.status(200).json(cat)
   } catch (error) {
     console.log(error)
