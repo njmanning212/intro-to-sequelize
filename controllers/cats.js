@@ -10,6 +10,17 @@ const create = async (req, res) => {
   }
 }
 
+const index = async (req, res) => {
+  try {
+    const cats = await Cat.findAll()
+    res.status(200).json(cats)
+  } catch (error) {
+    console.log(error)
+    req.status(500).json(error)
+  }
+}
+
 module.exports = {
   create,
+  index,
 }
