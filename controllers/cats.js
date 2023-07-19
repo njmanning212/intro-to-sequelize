@@ -14,9 +14,7 @@ const create = async (req, res) => {
 const index = async (req, res) => {
   try {
     const cats = await Cat.findAll({
-      include: [
-        {model: Feeding, as: 'feedings'}
-      ]
+      include: {all: true, nested: true}
     })
     res.status(200).json(cats)
   } catch (error) {
@@ -73,6 +71,17 @@ const addFeeding = async (req, res) => {
   }
 }
 
+const removeFeeding = async (req, res) => {
+  try {
+    const feeding = await Feeding.findByPk(req.params.feedingId)
+    await feeding.destroy()
+    res.status(200).json(feeding)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
+
 
 module.exports = {
   create,
@@ -81,4 +90,5 @@ module.exports = {
   update,
   delete: deleteCat,
   addFeeding,
+  removeFeeding,
 }

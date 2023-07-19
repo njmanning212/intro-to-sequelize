@@ -7,5 +7,6 @@ router.get('/', catsCtrl.index)
 router.get('/:id', catsCtrl.show)
 router.put('/:id', catsCtrl.update)
 router.delete('/:id', catsCtrl.delete)
+router.delete('/feedings/:feedingId', catsCtrl.removeFeeding)
 
 module.exports = router
