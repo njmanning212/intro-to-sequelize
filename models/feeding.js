@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Feeding.belongsTo(models.Cat, {
+        foreignKey: 'catId',
+      })
     }
   }
   Feeding.init({
