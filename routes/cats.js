@@ -5,5 +5,6 @@ router.post('/', catsCtrl.create)
 router.get('/', catsCtrl.index)
 router.get('/:id', catsCtrl.show)
 router.put('/:id', catsCtrl.update)
+router.delete('/:id', catsCtrl.delete)
 
 module.exports = router

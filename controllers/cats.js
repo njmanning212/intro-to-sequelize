@@ -42,9 +42,22 @@ const update = async (req, res) => {
   }
 }
 
+const deleteCat = async (req, res) => {
+  try {
+    const cat = await Cat.findByPk(req.params.id)
+    await cat.destroy()
+    res.status(200).json(cat)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
+
+
 module.exports = {
   create,
   index,
   show,
   update,
+  delete: deleteCat,
 }
